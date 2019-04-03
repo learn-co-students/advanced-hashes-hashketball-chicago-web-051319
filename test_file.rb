@@ -1,10 +1,10 @@
 def game_hash
     {
         home: {
-            team_name: "Brooklyn Nets",
+            team_names: "Brooklyn Nets",
             colors: ["Black", "White"],
             players: {
-                "Alan Anderson" => {
+                "Alan Anderson": {
                     number: 0,
                     shoe: 16,
                     points: 22,
@@ -14,7 +14,7 @@ def game_hash
                     blocks: 1,
                     slam_dunks: 1
                 },	
-                "Reggie Evans" => {
+                "Reggie Evans":	{
                     number: 30,
                     shoe: 14,
                     points: 12,
@@ -24,7 +24,7 @@ def game_hash
                     blocks: 12,
                     slam_dunks: 7
                 },
-                "Brook Lopez" => {
+                "Brook Lopez": {
                     number: 11,
                     shoe: 17,
                     points: 17,
@@ -34,7 +34,7 @@ def game_hash
                     blocks: 1,
                     slam_dunks: 15
                 },	
-                "Mason Plumlee" => {
+                "Mason Plumlee": {
                     number: 1,
                     shoe: 19,
                     points: 26,
@@ -44,7 +44,7 @@ def game_hash
                     blocks: 8, 
                     slam_dunks: 5
                 },
-                "Jason Terry" => {
+                "Jason Terry": {
                     number: 31,
                     shoe: 15,
                     points: 19,
@@ -57,10 +57,10 @@ def game_hash
             }
         },
         away: {
-            team_name: "Charlotte Hornets",
+            team_names: "Charlotte Hornets",
             colors: ["Turquoise", "Purple"],
             players: {
-                "Jeff Adrien" => {
+                "Jeff Adrien": {
                     number: 4,
                     shoe: 18,
                     points: 10,
@@ -70,7 +70,7 @@ def game_hash
                     blocks: 7,
                     slam_dunks: 2
                 },
-                "Bismak Biyombo" => {
+                "Bismak Biyombo": {
                     number: 0,
                     shoe: 16,
                     points: 12,
@@ -80,7 +80,7 @@ def game_hash
                     blocks: 15,
                     slam_dunks: 10
                 },
-                "DeSagna Diop" => {
+                "DeSagna Diop": {
                     number: 2,
                     shoe: 14,
                     points: 24,
@@ -90,7 +90,7 @@ def game_hash
                     blocks: 5,
                     slam_dunks: 5
                 },
-                "Ben Gordon" => {
+                "Ben Gordon": {
                     number: 8,
                     shoe: 15,
                     points: 33,
@@ -100,7 +100,7 @@ def game_hash
                     blocks: 1,
                     slam_dunks: 0
                 },    
-                "Brendan Haywood" => {
+                "Brendan Haywood": {
                     number: 33,
                     shoe: 15,
                     points: 6,
@@ -114,62 +114,19 @@ def game_hash
         }   
     }
 end
-# let(:top_level_keys) { [:home, :away] }
-# let(:team_level_keys) { [:team_name, :colors, :players] }
-def num_points_scored(name)
-  player = find_the_player(name)
-  player.fetch(:points)
+
+
+def number_of_points(player_name)
+    players_hash = {}
+    game_hash.each do | top_level_keys, team_level_keys |
+        players_hash = team_level_keys[:players]
+    end
+    players_hash.each do | player_names, player_keys |
+        if player_name == player_names
+            return player_keys
+        end
+    end
+    player_keys
 end
 
-def shoe_size(name)
-  player = find_the_player(name)
-  player.fetch(:shoe)
-end
-
-def team_colors(team_name)
-  team = find_the_team(team_name)
-  team.fetch(:colors)
-end
-
-def team_names
-  teams.map{|t| t.fetch(:team_name)}
-end
-
-def player_numbers(team_name)
-  find_the_team(team_name)[:players].map{ |player_name, stats| stats[:number] }
-end
-
-def player_stats(player_name)
-  find_the_player(player_name)
-end
-
-def big_shoe_rebounds
-  player_biggest_shoe_size.fetch(:rebounds)
-end
-
-def teams
-  game_hash.values
-end
-
-def players
-  game_hash[:home][:players].merge(game_hash[:away][:players])
-end
-
-def find_the_team(team_name)
-  teams.find {|team| team.fetch(:team_name) == team_name}
-end
-
-def find_the_player(name)
-  players.fetch(name)
-end
-
-def player_biggest_shoe_size
-  players.max_by{|player, stats| stats.fetch(:shoe)}[1]
-end
-
-
-
-
-
-
-        
+number_of_points
