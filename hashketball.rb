@@ -116,11 +116,12 @@ end
   
 def num_points_scored (name)
   game_hash.each do |location, team_data|
-    team_data.each do |players, name|
-      name.each do |points, value|
-        puts #{value} 
+      team_data.each do |players, points|
+        when players == name
+        puts points 
+      end 
       end 
     end 
-  end 
+    num_points_scored (name)
 end 
  
