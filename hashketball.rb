@@ -1,4 +1,3 @@
-require "pry"
 
 def game_hash
   {:home =>  
@@ -113,15 +112,68 @@ def game_hash
   }
 end 
   
-  
 def num_points_scored (name)
   game_hash.each do |location, team_data|
-      team_data.each do |players, points|
-        when players == name
-        puts points 
-      end 
-      end 
-    end 
-    num_points_scored (name)
-end 
+    team_data[:players].each do |player_name, data|
+      if player_name == name
+        return data [:points] 
+      end
+   end
+ end
+ end
  
+ def shoe_size (name)
+   game_hash.each do |location, team_data|
+     team_data[:players].each do |player_name, data|
+       if player_name == name 
+         return data[:shoe]
+       end 
+     end 
+   end 
+ end 
+
+def team_colors (name)
+  game_hash.each do |location, team_data|
+    if team_data[:team_name] == name
+      team_data[:colors]
+    end
+  end
+end 
+
+def team_names 
+  teams = ""
+  game_hash.collect do |location, team_data|
+   teams = team_data[:team_name]
+    end
+    teams
+end 
+
+def player_numbers (name)
+
+end 
+
+def player_stats (name)
+   game_hash.each do |location, team_data|
+      team_data[:players].each do |player_name, value|
+         if player_name == name
+            return value
+         end
+      end
+   end
+end 
+
+def big_shoe_rebounds 
+   shoe_size = 0
+   rebound = 0
+   game_hash.each do |location, team_data|
+      team_data[:players].each do |player_name, value|
+         if value[:shoe] > shoe_size
+            shoe_size = value[:shoe]
+            rebound = value[:rebounds]
+         end
+      end
+   end
+   rebound
+end 
+
+ # {location{team_data{players{name, {points,value} } } } 
