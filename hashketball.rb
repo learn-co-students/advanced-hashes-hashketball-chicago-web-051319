@@ -135,22 +135,36 @@ def num_points_scored (name)
 def team_colors (name)
   game_hash.each do |location, team_data|
     if team_data[:team_name] == name
-      team_data[:colors]
+      return team_data[:colors]
     end
   end
 end 
 
-def team_names 
-  teams = ""
-  game_hash.collect do |location, team_data|
-   teams = team_data[:team_name]
+def team_colors(name)
+  game_hash.each do |location, team_data|
+    if team_data[:team_name] == name
+      team_data[:colors]
     end
-    teams
-end 
+  end
+end
 
-def player_numbers (name)
+def team_names
+  game_hash.collect do |location, team_data|
+    team_data[:team_name]
+  end
+end
 
-end 
+def player_numbers(name)
+  array = []
+   game_hash.each do |location, team_data|
+    if team_data[:team_name] == name
+      team_data[:players].each { |player_name, value|
+        array << value[:number]
+      end
+    end
+  end
+  array
+end
 
 def player_stats (name)
    game_hash.each do |location, team_data|
