@@ -2,7 +2,7 @@
 def game_hash
   {:home =>  
       {
-        :team_name => "Brooklyn Mets", 
+        :team_name => "Brooklyn Nets", 
         :colors => ["Black", "White"],
         :players => {
           "Alan Anderson" => 
@@ -57,7 +57,7 @@ def game_hash
      :team_name => "Charlotte Hornets",
       :colors => ["Turquoise", "Purple"], 
       :players => {
-        "Jeff Adrien" => 
+          "Jeff Adrien" => 
             {:number => 4,
             :shoe => 18,
             :points => 10,
@@ -140,13 +140,6 @@ def team_colors (name)
   end
 end 
 
-def team_colors(name)
-  game_hash.each do |location, team_data|
-    if team_data[:team_name] == name
-      team_data[:colors]
-    end
-  end
-end
 
 def team_names
   game_hash.collect do |location, team_data|
