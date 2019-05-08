@@ -63,14 +63,13 @@ end
 
 
 def team_names
-  new_array = []
+  empty = []
    game_hash.each do |location, team_data|
      team_data.each do |attribute, data|
-       binding.pry
-       if data == :team_name
-         new_array << data
+       if attribute == :team_name
+         empty << data
        end
      end
    end
-   new_array
+   return empty
 end
