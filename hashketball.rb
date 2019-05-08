@@ -54,17 +54,23 @@ end
 
 
 def team_colors(name)
-  color = []
-  hash = game_hash
-  hash.each do |location, team_data|
-    binding.pry
-    if hash[location].values.include?(hash[location][:team_name])
-      team_data.each do |attribute, detail|
-        if attribute == :colors
-          color.push(detail)
-        end
-      end
+    game_hash.each do |location, team_data|
+    if team_data[:team_name].include?(name)
+      return team_data[:colors]
     end
   end
-  return color
+end
+
+
+def team_names
+  new_array = []
+   game_hash.each do |location, team_data|
+     team_data.each do |attribute, data|
+       binding.pry
+       if data == :team_name
+         new_array << data
+       end
+     end
+   end
+   new_array
 end
