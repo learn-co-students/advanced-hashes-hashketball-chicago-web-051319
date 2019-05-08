@@ -71,5 +71,10 @@ def team_names
        end
      end
    end
-   return empty
+   return empty.flatten
+end
+
+
+def player_numbers(number)
+
 end
