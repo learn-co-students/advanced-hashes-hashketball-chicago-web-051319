@@ -75,7 +75,7 @@ def team_names
 end
 
 
-def player_numbers(numbers)
+def player_numbers(team_name)
   hash = game_hash
   empty = []
   hash.each do |location, team_data|
@@ -83,8 +83,7 @@ def player_numbers(numbers)
       if attribute == :players
         number.each do |person, data|
           data.each do |x, y|
-            binding.pry
-            if x == :Number
+            if x == :Number && team_data[:team_name][0] == team_name
               empty.push(y)
             end
           end
@@ -93,4 +92,9 @@ def player_numbers(numbers)
     end
   end
   return empty
+end
+
+
+def player_stats
+
 end
